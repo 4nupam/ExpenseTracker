@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { RiLightbulbLine, RiLightbulbFlashLine } from "react-icons/ri";
 import { GiCrossMark } from "react-icons/gi";
+import { TbHandClick } from "react-icons/tb";
 import { FaArrowCircleRight } from "react-icons/fa";
-
+import { RiAddLargeFill } from "react-icons/ri";
 const Main = () => {
   const [dark, setDark] = useState(false);
   const [text, setText] = useState("");
@@ -73,8 +74,8 @@ const Main = () => {
   };
 
   return (
-    <div className="bg-gray-300 h-[90%] w-11/12 md:w-3/4 lg:w-1/2 dark:bg-gray-800 rounded-md p-4 mx-auto">
-      <div className="header flex items-center justify-between mb-4">
+    <div className="bg-gray-300 h-[90%] w-11/12 md:w-[95%] lg:w-1/2 dark:bg-gray-800 rounded-md p-4 mx-auto">
+      <div className="header flex items-center gap-4 mb-2">
         <span className="text-2xl font-bold dark:text-white">
           Expense Tracker
         </span>
@@ -86,7 +87,7 @@ const Main = () => {
         </button>
       </div>
       <div className="Account flex flex-col md:flex-row items-center justify-between mb-4">
-        <span className="font-semibold text-lg text-gray-600 dark:text-gray-200">
+        <span className="font-semibold text-gray-600 dark:text-gray-200">
           {salary ? (
             "Your Balance"
           ) : (
@@ -103,22 +104,22 @@ const Main = () => {
               <input
                 type="number"
                 placeholder="Enter Your Salary here"
-                className="outline-none border-b-2 bg-transparent p-1 text-black font-semibold no-spinners w-full md:w-auto"
+                className="outline-none border-b-2 bg-transparent border-violet-500 text-black font-semibold no-spinners w-full md:w-auto"
                 value={amount}
                 onChange={handleSalary}
               />
               <button
-                className="p-1 bg-violet-600 text-white rounded-md ml-2 font-thin
+                className="p-2 bg-violet-600 rounded-full text-white ml-2 font-thin
                  hover:bg-violet-700 transition duration-300 disabled:bg-slate-200 disabled:text-black"
                 onClick={handleSalarySubmit}
               >
-                Submit
+                <TbHandClick />
               </button>
             </div>
           )}
         </span>
       </div>
-      <div className="cards flex justify-between items-center gap-4 mb-6">
+      <div className="cards flex justify-evenly items-center gap-4">
         <div className="income flex flex-col items-center p-4 bg-white dark:bg-slate-700 text-lg font-bold text-green-500 rounded-md shadow-md">
           <span>Income</span>
           <span>{income.toFixed(2)}</span>
@@ -132,6 +133,8 @@ const Main = () => {
         History
       </span>
       <hr className="border-cyan-500 my-1" />
+      <div className="container flex flex-col justify-between bg-red h-[60%]">
+
       <div className="history p-2 mb-2 max-h-60 overflow-y-auto scrollbar-none scrollbar-thumb-rounded scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-track-gray-200 dark:scrollbar-track-gray-700">
         {list.length > 0 ? (
           <ul className="space-y-2">
@@ -159,14 +162,13 @@ const Main = () => {
           <div className="text-center text-gray-500">No History</div>
         )}
       </div>
-
-      <div className="New_Transaction p-2 mb-4">
+      <div className="New_Transaction sticky">
         <span className="text-xl font-bold text-emerald-700 dark:text-emerald-300">
           Add New Transactions
         </span>
-        <hr className="border-cyan-500 my-2" />
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mt-2">
-          <div className="flex flex-col md:flex-row items-center gap-3 w-full md:w-1/2">
+        <hr className="border-cyan-500 my-1" />
+        <div className="flex flex-col md:flex-row items-center justify-between gap-2 mt-2">
+          <div className="flex flex-col md:flex-row items-center gap-2 w-full md:w-1/2">
             <label htmlFor="" className="dark:text-white w-full md:w-auto">
               Add Text
             </label>
@@ -179,10 +181,11 @@ const Main = () => {
             />
           </div>
 
-          <div className="flex flex-col md:flex-row items-center gap-3 w-full md:w-1/2">
-            <label htmlFor="" className="dark:text-white w-full md:w-auto">
+          <div className="flex flex-col md:flex-row items-center w-full md:w-1/2">
+          
+            <span htmlFor="" className="dark:text-white w-full md:w-auto">
               Amount
-            </label>
+            </span>
             <select
               name=""
               id=""
@@ -200,19 +203,21 @@ const Main = () => {
               onChange={handleDataInput}
             />
           </div>
-        </div>
-      </div>
       <button
         className={`p-2 ${
           !data || !text
             ? "bg-slate-200 text-black cursor-not-allowed"
             : "bg-violet-600 text-white hover:bg-violet-700 transition duration-300"
-        } rounded-md float-right mr-3 mt-4`}
+        } rounded-full float-right mr-3 mt-4`}
         onClick={addTransactions}
         disabled={!data || !text}
       >
-        Add Transactions
+        <RiAddLargeFill/>
       </button>
+        </div>
+      </div>
+      </div>
+
     </div>
   );
 };
